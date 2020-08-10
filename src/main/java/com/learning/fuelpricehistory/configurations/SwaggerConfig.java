@@ -29,7 +29,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo getInfo() {
         return new ApiInfo("Preço de Combustíveis",
-                "API desenvolvida com Spring Boot para consumir e gerenciar dados sobre preços de combusíveis disponibilizados pela Agência Nacional do Petróleo",
+                "API desenvolvida com Spring Boot para consumir e gerenciar dados sobre preços de combustíveis disponibilizados pela Agência Nacional do Petróleo",
                 "1.0", "",
                 new Contact("Jéferson Jose da Silva", "https://gitlab.com/JefersonSilva", "jeferson.silva@dcx.ufpb.br"),
                 "", "", Collections.emptyList());
