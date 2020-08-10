@@ -38,7 +38,7 @@ De toda forma, caso queira cadastrar um usuário antes de realizar o login, aces
 			}
 		]
 	}
-Perceba que existe dois tipos de autoridades a "ROLE_ADMIN" e a "ROLE_USER" ambas já estão cadastradas na API. 
+Perceba que existem dois tipos de autoridades a "ROLE_ADMIN" e a "ROLE_USER" ambas já estão cadastradas na API. 
 
 Manda aí os seus pull requests! 
 Att.
