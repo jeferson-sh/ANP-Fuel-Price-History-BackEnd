@@ -1,4 +1,4 @@
-# ANP-Fuel-Price-History-BackEnd
+# API de consulta de preços disponibilizada por meio de arquivos .csv pela ANP
 
 API desenvolvida com Spring Boot para consumir e gerenciar dados sobre preços de combustíveis disponibilizados pela Agência Nacional do Petróleo através deste [link](http://www.anp.gov.br/conteudo-do-menu-superior/31-dados-abertos/conteudo-do-menu-superior/31-dados-abertos/5542-serie-historica-de-precos-de-combustiveis): .
 
@@ -40,5 +40,20 @@ De toda forma, caso queira cadastrar um usuário antes de realizar o login, aces
 	}
 Perceba que existe dois tipos de authoridades a "ROLE_ADMIN" e a "ROLE_USER" ambas já estão cadastradas na API. 
 
-Manda aí os seus pull requests! 
+## Como importar dados para a api?
+Siga os passos abaixo:
+ 1. acesse o link de download dos arquivos disponibilizados pela ANP através do link: 
+ 2. [http://www.anp.gov.br/conteudo-do-menu-superior/31-dados-abertos/conteudo-do-menu-superior/31-dados-abertos/5542-serie-historica-de-precos-de-combustiveis](http://www.anp.gov.br/conteudo-do-menu-superior/31-dados-abertos/conteudo-do-menu-superior/31-dados-abertos/5542-serie-historica-de-precos-de-combustiveis)
+ 3. Realize o download dos arquivos que vc quer importar para o seu banco de dados da seção **Combustíveis automotivos**;
+ 4. Acesse o endpoint da api: /fuelPriceHistory/import;
+ 5. Importe o arquivo que você realizou o download;
+ 6. Insira o token de autorização  da api;
+ 7. Realize a request; :)
+
+**Observações importantes!**
+
+ 1. A request de importação de dados **só pode ser feita em ambiente Local**. O plano free do Heroku não possui hardware capaz de gerenciar cerca de 50 mil linhas de dados contidos nos arquivos;
+ 2. Se estiver rodando em ambiente local lembre-se que o banco utilizados nesse projeto é o **H2 Database**, pois este é um projeto apenas de aprendizado das tecnologias utilizadas. Por este motivo, **se você reiniciar o servidor irá perder dos os dados salvos anteriormente no banco de dados;**
+
+Continue estudando e me manda aí os seus pull requests! 
 Att.
