@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import com.learning.fuelpricehistory.models.FuelPriceHistory;
 import com.learning.fuelpricehistory.repositories.FuelPriceHistoryRepository;
-import com.learning.fuelpricehistory.services.FuelPriceHistoryServiceImpl;
+import com.learning.fuelpricehistory.services.FuelPriceHistoryService;
 import com.learning.fuelpricehistory.utils.DateUtil;
 
 import org.springframework.data.domain.Page;
@@ -25,12 +25,12 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/fuelPriceHistory")
+@RequestMapping("/fuelsPricesHistory")
 @Api(description = "Operations pertaining to fuel price")
 @ApiImplicitParams({
 		@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
 public class FuelPriceHistoryController
-		extends GenericController<FuelPriceHistory, FuelPriceHistoryRepository, FuelPriceHistoryServiceImpl> {
+		extends GenericController<FuelPriceHistory, FuelPriceHistoryRepository, FuelPriceHistoryService> {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 	@ApiOperation(value = "View AVG purchase prices by county")

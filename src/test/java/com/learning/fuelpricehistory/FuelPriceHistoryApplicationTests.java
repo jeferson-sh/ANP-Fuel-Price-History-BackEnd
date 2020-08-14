@@ -1,7 +1,7 @@
 package com.learning.fuelpricehistory;
 
 import com.learning.fuelpricehistory.services.BannerService;
-import com.learning.fuelpricehistory.services.FuelPriceHistoryServiceImpl;
+import com.learning.fuelpricehistory.services.FuelPriceHistoryService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ class FuelPriceHistoryApplicationTests {
 	@Autowired
 	BannerService bannerService;
 	@Autowired
-	FuelPriceHistoryServiceImpl priceService;
+	FuelPriceHistoryService priceService;
 
 	@Test
 	void contextLoads() {

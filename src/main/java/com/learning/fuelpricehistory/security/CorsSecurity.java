@@ -3,7 +3,7 @@ package com.learning.fuelpricehistory.security;
 
 import java.util.Arrays;
 
-import com.learning.fuelpricehistory.services.UserService;
+import com.learning.fuelpricehistory.services.ApplicationUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class CorsSecurity extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private UserService userService;
+  private ApplicationUserService userService;
   @Autowired
   private BCryptPasswordEncoder bCryptPasswordEncoder;
 

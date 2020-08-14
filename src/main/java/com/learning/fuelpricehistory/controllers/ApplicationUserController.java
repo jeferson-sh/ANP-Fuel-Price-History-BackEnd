@@ -4,10 +4,11 @@ import javax.validation.Valid;
 
 import com.learning.fuelpricehistory.models.ApplicationUser;
 import com.learning.fuelpricehistory.repositories.UserRepository;
-import com.learning.fuelpricehistory.services.UserService;
+import com.learning.fuelpricehistory.services.ApplicationUserService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +17,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-@NoArgsConstructor
 @RequestMapping("/users")
 @Api(description = "Operations pertaining to user")
 @Getter
 @Setter
-public class UserController extends GenericController<ApplicationUser, UserRepository, UserService> {
+public class ApplicationUserController extends GenericController<ApplicationUser, UserRepository, ApplicationUserService> {
 
     @Override
     @ApiIgnore
@@ -42,8 +42,8 @@ public class UserController extends GenericController<ApplicationUser, UserRepos
 
     @PostMapping("/sign-up")
     @ApiOperation(value = "Signup user")
+    @ResponseStatus(code = HttpStatus.CREATED)
     public void signUp(@Valid @RequestBody ApplicationUser user) {
-        user.setPassword(super.bCryptPasswordEncoder.encode(user.getPassword()));
         super.getService().create(user);
     }
 
