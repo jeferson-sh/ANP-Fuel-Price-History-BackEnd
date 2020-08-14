@@ -3,7 +3,7 @@ package com.learning.fuelpricehistory.controllers;
 import java.net.URI;
 
 import com.learning.fuelpricehistory.models.FuelPriceHistory;
-import com.learning.fuelpricehistory.services.ImportColletionsService;
+import com.learning.fuelpricehistory.services.ImportFuelsPricesHistoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +30,7 @@ import lombok.Setter;
 public class ImportFuelPriceHistoryController {
 
     @Autowired
-    private ImportColletionsService service;
+    private ImportFuelsPricesHistoryService service;
 
 	@ApiOperation(value = "import Csv files")
     @ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header")

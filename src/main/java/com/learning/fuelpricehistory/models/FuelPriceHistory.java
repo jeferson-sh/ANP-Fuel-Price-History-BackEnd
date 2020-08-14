@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FuelPriceHistory implements GenericModel<Long> {
 
-    public static final String PK = "fuel_history_id";
+    public static final String PK = "id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,14 +34,9 @@ public class FuelPriceHistory implements GenericModel<Long> {
     private Long id;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = Region.FK)
-    @NotNull(message = "Region cannot be null")
-    private Region region;
-
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = State.FK)
-    @NotNull(message = "State cannot be null")
-    private State state;
+    @JoinColumn(name=Banner.FK)
+    @NotNull(message = "Banner can not be null")
+    private Banner banner;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = County.FK)
@@ -49,9 +44,19 @@ public class FuelPriceHistory implements GenericModel<Long> {
     private County county;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = Region.FK)
+    @NotNull(message = "Region cannot be null")
+    private Region region;
+
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = Reseller.FK)
     @NotNull(message = "Reseller cannot be null")
     private Reseller reseller;
+
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = State.FK)
+    @NotNull(message = "State cannot be null")
+    private State state;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = Product.FK)
@@ -67,9 +72,6 @@ public class FuelPriceHistory implements GenericModel<Long> {
 
     private String measurementUnit;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name=Banner.FK)
-    @NotNull(message = "Banner can not be null")
-    private Banner banner;
+    
 
 }

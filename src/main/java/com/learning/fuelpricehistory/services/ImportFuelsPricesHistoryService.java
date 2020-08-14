@@ -1,4 +1,4 @@
-package com.learning.fuelpricehistory.utils.files;
+package com.learning.fuelpricehistory.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +20,7 @@ import com.learning.fuelpricehistory.models.Reseller;
 import com.learning.fuelpricehistory.models.State;
 import com.learning.fuelpricehistory.repositories.BannerRepository;
 import com.learning.fuelpricehistory.repositories.CountyRepository;
+import com.learning.fuelpricehistory.repositories.FuelPriceHistoryRepository;
 import com.learning.fuelpricehistory.repositories.ProductRepository;
 import com.learning.fuelpricehistory.repositories.RegionRepository;
 import com.learning.fuelpricehistory.repositories.ResellerRepository;
@@ -29,23 +30,38 @@ import com.learning.fuelpricehistory.utils.DateUtil;
 import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.AllArgsConstructor;
+@Service
+public class ImportFuelsPricesHistoryService {
 
-@AllArgsConstructor
-public class CollectsReaderUtil {
+    @Autowired
+    private FuelPriceHistoryRepository FuelsPricesHistoryRepository;
+    @Autowired
+    private RegionRepository regionRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private BannerRepository bannerRepository;
+    @Autowired
+    private CountyRepository countyRepository;
+    @Autowired
+    private ResellerRepository resellerRepository;
+    @Autowired
+    private StateRepository stateRepository;
 
-	private final RegionRepository regionRepository;
-	private final ProductRepository productRepository;
-	private final BannerRepository bannerRepository;
-	private final CountyRepository countyRepository;
-	private final StateRepository stateRepository;
-	private final ResellerRepository resellerRepository;
+	private final Logger logger = LoggerFactory.getLogger(ImportFuelsPricesHistoryService.class);
 
-	private final Logger logger = LoggerFactory.getLogger(CollectsReaderUtil.class);
 
-	/**
+
+    // Import Data From Csv File
+    public void importCsv(MultipartFile file) {
+        this.FuelsPricesHistoryRepository.saveAll(readCsv(file));
+    }
+
+    /**
 	 * Row format: Region_initials - State_initials - County - Reseller -
 	 * Reseller_CNPJ - Product - Date_collect - Sale_Price - Purchase_Price -
 	 * Measurement_Unit - Banner
@@ -68,7 +84,7 @@ public class CollectsReaderUtil {
 			bufferedReader.readLine();
 			while ((readLine = bufferedReader.readLine()) != null) {
 				if ((columns = readLine.split(delimiter)).length == 11) {
-					collects.add(createCollect(columns));
+					collects.add(createFuelPriceHistory(columns));
 				} else {
 					invalidRecords++;
 				}
@@ -84,7 +100,7 @@ public class CollectsReaderUtil {
 		return collects;
 	}
 
-	private FuelPriceHistory createCollect(String[] columns) {
+	private FuelPriceHistory createFuelPriceHistory(String[] columns) {
 		FuelPriceHistory collect = new FuelPriceHistory();
 		// Region
 		collect.setRegion(findRegion(trim(columns[0])));
@@ -110,7 +126,7 @@ public class CollectsReaderUtil {
 
 	}
 
-	private Reseller findReseller(String name, String cnpj) {
+	public Reseller findReseller(String name, String cnpj) {
 		Optional<Reseller> reseller = this.resellerRepository.findByName(name);
 		return (reseller.isPresent()) ? reseller.get() : saveReseller(name, cnpj);
 	}
@@ -122,7 +138,7 @@ public class CollectsReaderUtil {
 		return this.resellerRepository.save(reseller);
 	}
 
-	private State findState(String stateInitial) {
+	public State findState(String stateInitial) {
 		Optional<State> stateSaved = this.stateRepository.findByUf(stateInitial);
 		return (stateSaved.isPresent()) ? stateSaved.get() : saveState(stateInitial);
 	}
@@ -133,7 +149,7 @@ public class CollectsReaderUtil {
 		return this.stateRepository.save(stateSaved);
 	}
 
-	private Region findRegion(String name) {
+	public Region findRegion(String name) {
 		Optional<Region> regionSaved = this.regionRepository.findByName(name);
 		return (regionSaved.isPresent()) ? regionSaved.get() : saveRegion(name);
 	}
@@ -144,18 +160,18 @@ public class CollectsReaderUtil {
 		return this.regionRepository.save(regionSaved);
 	}
 
-	private County findCounty(String countyName) {
+	public County findCounty(String countyName) {
 		Optional<County> countySaved = this.countyRepository.findByName(countyName);
 		return (countySaved.isPresent()) ? countySaved.get() : saveCounty(countyName);
 	}
 
-	private County saveCounty(String name) {
+	public County saveCounty(String name) {
 		County countySaved = new County();
 		countySaved.setName(name);
 		return this.countyRepository.save(countySaved);
 	}
 
-	private Product findProduct(String name) {
+	public Product findProduct(String name) {
 		Optional<Product> productSaved = productRepository.findByName(name);
 		return (productSaved.isPresent()) ? productSaved.get() : saveProduct(name);
 	}
@@ -166,7 +182,7 @@ public class CollectsReaderUtil {
 		return this.productRepository.save(product);
 	}
 
-	private Banner findBanner(String name) {
+	public Banner findBanner(String name) {
 		Optional<Banner> bannerSaved = bannerRepository.findByName(name);
 		return (bannerSaved.isPresent()) ? bannerSaved.get() : saveBanner(name);
 	}
