@@ -41,7 +41,7 @@ public class ApplicationUserController extends GenericController<ApplicationUser
     }
 
     @PostMapping("/sign-up")
-    @ApiOperation(value = "Signup user")
+    @ApiOperation(value = "Sign-up user")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void signUp(@Valid @RequestBody ApplicationUser user) {
         super.getService().create(user);
