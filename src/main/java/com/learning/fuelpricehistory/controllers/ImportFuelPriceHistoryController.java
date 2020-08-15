@@ -24,7 +24,7 @@ import lombok.Setter;
 
 @Api(description="Operations pertaining to import csv files")
 @RestController
-@RequestMapping("/fuelPriceHistory")
+@RequestMapping("/fuelsPricesHistory")
 @Getter @Setter
 @AllArgsConstructor
 public class ImportFuelPriceHistoryController {
