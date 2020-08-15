@@ -14,14 +14,14 @@ public class SpringSecurityController {
 
     @ApiOperation("Login.")
     @PostMapping("login")
-    public void fakeLogin(@RequestBody Credential credentials) {
+    public void login(@RequestBody Credential credentials) {
         throw new IllegalStateException(
                 "This method shouldn't be called. It's implemented by Spring Security filters.");
     }
 
     @ApiOperation("Logout.")
     @PostMapping("logout")
-    public void fakeLogout() {
+    public void logout() {
         throw new IllegalStateException(
                 "This method shouldn't be called. It's implemented by Spring Security filters.");
     }
