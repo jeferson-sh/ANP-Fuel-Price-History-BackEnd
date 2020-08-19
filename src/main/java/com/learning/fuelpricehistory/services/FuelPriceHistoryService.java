@@ -29,6 +29,11 @@ public class FuelPriceHistoryService extends GenericService<FuelPriceHistory, Fu
         return super.create(model);
     }
 
+    @Override
+    public FuelPriceHistory update(Long id, FuelPriceHistory model) {
+        return this.create(model);
+    }
+
     // Average Purchase Price Based On County Name
     public Double getAveragePurchasePriceBasedOnCountyName(String countyName) {
         return getRepository().findAverageFuelPurchasePriceBasedOnCountyName(countyName);

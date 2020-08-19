@@ -36,7 +36,7 @@ public class ApplicationUserController extends GenericController<ApplicationUser
 
     @Override
     @ApiIgnore
-    public ResponseEntity<ApplicationUser> create(@Valid ApplicationUser model) {
+    public ApplicationUser create(@Valid ApplicationUser model) {
         return super.create(model);
     }
 
@@ -63,7 +63,7 @@ public class ApplicationUserController extends GenericController<ApplicationUser
 
     @Override
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<ApplicationUser> findById(@PathVariable Long id) {
+    public ApplicationUser findById(@PathVariable Long id) {
         return super.findById(id);
     }
 
