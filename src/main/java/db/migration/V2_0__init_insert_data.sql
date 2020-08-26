@@ -1,19 +1,19 @@
 -- Insert Admin User
 -- PASSWORD = PASSWORD
-insert into USERS
-values(1,'ADMIN', '$2y$12$sEOJVDRlyQnxjiX21R.SX./.szTA/pas/RZ/0/tmMZxZzf3Jjd9ye','ADMIN@EMAIL');
+insert into application_user
+values(1,'ADMIN','ADMIN@EMAIL','$2y$12$sEOJVDRlyQnxjiX21R.SX./.szTA/pas/RZ/0/tmMZxZzf3Jjd9ye');
 
 --Insert AUTHORITIES
-insert into AUTHORITIES
+insert into authority
 values
 (1,'ROLE_ADMIN'),
 (2,'ROLE_USER');
 
 --Insert relationship user authority
-insert into USERS_AUTHORITIES 
-values
-(1,1), 
-(1,2);
+--insert into application_user_authorities
+--values
+--(1,1), 
+--(1,2);
 
 --Insert States
 insert into STATE
