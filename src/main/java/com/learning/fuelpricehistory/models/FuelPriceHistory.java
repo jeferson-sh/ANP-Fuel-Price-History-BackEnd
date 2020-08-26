@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,7 +20,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-//@Table(name = "fuels_prices")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -29,7 +27,6 @@ import lombok.Setter;
 public class FuelPriceHistory implements GenericModel<Long> {
 
     public static final String PK = "id";
-    public static final String FK = "fuel_price_id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
