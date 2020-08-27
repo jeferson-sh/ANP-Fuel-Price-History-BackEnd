@@ -52,7 +52,7 @@ Siga os passos abaixo:
 
 **Observações importantes!**
 
- 1. A request de importação de dados **só pode ser feita em ambiente Local**. O plano free do Heroku não possui hardware capaz de gerenciar cerca de 50 mil linhas de dados contidos nos arquivos;
+ 1. A request de importação de dados **só pode ser feita em ambiente Local**. O plano free do Heroku não possui hardware capaz de gerenciar cerca de 500 mil linhas de dados contidos nos arquivos;
  2. Se estiver rodando em ambiente local lembre-se que o banco utilizados nesse projeto é o **H2 Database**, pois este é um projeto apenas de aprendizado das tecnologias utilizadas. Por este motivo, **se você reiniciar o servidor irá perder dos os dados salvos anteriormente no banco de dados;**
 
 Continue estudando e me manda aí os seus pull requests! 
