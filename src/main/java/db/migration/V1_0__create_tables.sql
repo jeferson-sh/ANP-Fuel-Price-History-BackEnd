@@ -1,83 +1,80 @@
 --Create table users
-create table application_user(
-    id bigint, 
-    name text, 
-    username text,
-    password text, 
-    primary key(id) 
-);
-
--- Cretate Table authorities
-create table authority(
-    id bigint, 
-    authority text, 
+create table users(
+    id bigint auto_increment not null,
+    name text not null,
+    username text not null,
+    password text not null,
     primary key(id)
 );
 
---create table application_user_authorities
---(
-  --application_user_id bigint not null,
-  --authorities_id bigint not null,
-  --CONSTRAINT application_user_authorities_pk PRIMARY KEY (application_user_id, authorities_id),
-  --CONSTRAINT fk_users 
-    --  FOREIGN KEY (application_user_id) REFERENCES application_user(id),
-  --CONSTRAINT FK_authorities 
-    --  FOREIGN KEY (authorities_id) REFERENCES authority(id)
---);
+-- Cretate Table authorities
+create table authorities(
+    id bigint auto_increment not null,
+    authority text not null,
+    primary key(id)
+);
+
+create table users_authorities(
+    user_id bigint not null,
+    authority_id bigint not null,
+    CONSTRAINT users_authorities_pk PRIMARY KEY (user_id, authority_id),
+    CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT FK_authorities FOREIGN KEY (authority_id) REFERENCES authorities(id)
+);
 
 --banners
 create table banner(
-    id bigint, 
-    name text, 
+    id bigint auto_increment not null,
+    name text not null,
     primary key(id)
 );
 
 --counties
 create table county(
-    id bigint,
-    name text(2), 
+    id bigint auto_increment not null,
+    name text not null,
     primary key(id)
 );
 
 --products
 create table product(
-    id int, 
-    name text, 
+    id int auto_increment not null,
+    name text not null,
     primary key(id)
 );
 
 --regions
 create table region(
-    id int(1), 
-    name text, 
+    id int auto_increment not null,
+    name text not null,
     primary key(id)
 );
 
 --resellers
 create table reseller(
-    id bigint, 
-    name text, 
-    cnpj text, 
+    id bigint auto_increment not null,
+    name text not null,
+    cnpj text not null,
     primary key(id)
 );
 
 --states
 create table state(
-    id bigint, 
-    uf text(2), 
+    id int auto_increment not null,
+    uf text not null,
     primary key(id)
 );
 
 --fuels prices history
 create table fuel_price_history(
-    id bigint, 
-    name text, 
-    banner_id bigint, 
-    count_id bigint, 
-    product_id bigint, 
-    region_id bigint, 
-    reseller_id bigint, 
-    state_id bigint,  
+    id bigint auto_increment not null,
+    name text,
+    banner_id bigint,
+    count_id bigint,
+    product_id bigint,
+    region_id bigint,
+    reseller_id bigint,
+    state_id bigint,
     primary key(id),
     foreign key (banner_id) references banner(id),
     foreign key (count_id) references banner(id),
@@ -86,7 +83,3 @@ create table fuel_price_history(
     foreign key (reseller_id) references reseller(id),
     foreign key (state_id) references state(id)
 );
-
-
-
-

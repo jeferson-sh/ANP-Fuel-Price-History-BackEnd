@@ -1,5 +1,6 @@
 package com.learning.fuelpricehistory.services;
 
+
 import com.learning.fuelpricehistory.models.ApplicationUser;
 import com.learning.fuelpricehistory.repositories.UserRepository;
 
@@ -27,8 +28,7 @@ public class ApplicationUserService extends GenericService<ApplicationUser, User
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            ApplicationUser user = super.getRepository().findByUsername(username);
-            System.err.println("USER: " + user);
+            ApplicationUser user = super.getRepository().findByUsername(username);        
             return new User(user.getUsername(), user.getPassword(), user.getAuthorities());
         } catch (RuntimeException e) {
             throw new UsernameNotFoundException(e.getMessage());

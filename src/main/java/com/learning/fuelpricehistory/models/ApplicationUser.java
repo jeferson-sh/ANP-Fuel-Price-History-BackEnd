@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -28,7 +30,8 @@ import lombok.ToString;
 @ToString
 public class ApplicationUser implements GenericModel<Long> {
 
-	public static final String PK = "user_id";
+	public static final String PK = "id";
+	public static final String FK = "user_id";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +42,7 @@ public class ApplicationUser implements GenericModel<Long> {
 	@NotNull(message = "name can not be null")
 	private String name;
 
-	@Column(name = "user_name", unique = true)
+	@Column(name = "username", unique = true)
 	@Email(message = "Email need be valid")
 	@NotNull(message = "Email can not be null")
 	private String username;
@@ -50,6 +53,10 @@ public class ApplicationUser implements GenericModel<Long> {
 	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@NotNull(message = "Authorities can not be null")
+    @JoinTable(
+        name = "users_authorities", 
+        joinColumns = { @JoinColumn(name = FK,nullable = false) }, 
+        inverseJoinColumns = { @JoinColumn(name = Authority.FK,nullable = false) }
+    )
 	private Set<Authority> authorities;
 }

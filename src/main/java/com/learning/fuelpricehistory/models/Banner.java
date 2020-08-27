@@ -24,7 +24,7 @@ public class Banner implements GenericModel<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = PK)
     private Long id;
 
     @NotNull(message = "Name can not be null")
