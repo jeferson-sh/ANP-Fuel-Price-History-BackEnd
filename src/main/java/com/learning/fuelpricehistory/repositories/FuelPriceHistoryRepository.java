@@ -24,7 +24,7 @@ public interface FuelPriceHistoryRepository extends PagingAndSortingRepository<F
 	@Query(value="SELECT fuel FROM FuelPriceHistory AS fuel INNER JOIN Reseller AS re ON fuel.reseller.id = re.id AND re.name=?1")
 	Page<FuelPriceHistory> findFuelPriceHistorysByResellerName(String resellerName, Pageable pageable);
 	
-	Page<FuelPriceHistory> findByDate(LocalDate localDate, Pageable pageable);
+	Page<FuelPriceHistory> findByRegistreDate(LocalDate localDate, Pageable pageable);
 	
 	@Query(value = "SELECT AVG(fuel.salePrice) FROM FuelPriceHistory AS fuel INNER JOIN Banner AS ban ON fuel.county.id = ban.id AND ban.name=?1")
 	Double findAverageFuelSalePriceBasedOnBannerName(String bannerName);

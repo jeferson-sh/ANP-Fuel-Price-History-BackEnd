@@ -64,14 +64,13 @@ public class FuelPriceHistory implements GenericModel<Long> {
     private Product product;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate date;
+    @Column(name = "registre_date")
+    private LocalDate registreDate;
 
     private Double purchasePrice;
 
     private Double salePrice;
 
     private String measurementUnit;
-
-    
 
 }

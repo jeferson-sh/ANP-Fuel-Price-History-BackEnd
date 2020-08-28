@@ -85,7 +85,7 @@ public class ImportFuelsPricesHistoryService {
 		// Product
 		collect.setProduct(service.findProduct(trim(columns[5])));
 		// Date
-		collect.setDate(getDate(trim(columns[6])));
+		collect.setRegistreDate(getDate(trim(columns[6])));
 		// Sale price
 		collect.setSalePrice(getPrice(trim(columns[7])));
 		// Purchase price

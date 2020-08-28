@@ -60,7 +60,7 @@ public class FuelPriceHistoryService extends GenericService<FuelPriceHistory, Fu
     }
 
     public Page<FuelPriceHistory> getFuelPriceHistoryByDate(LocalDate date, Pageable pageable) {
-        return getRepository().findByDate(
+        return getRepository().findByRegistreDate(
                 DateUtil.getLocalDate(DateTimeFormatter.ofPattern(DateUtil.DATE_FORMAT).format(date)), pageable);
     }
 
