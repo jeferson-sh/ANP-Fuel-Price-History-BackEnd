@@ -61,7 +61,7 @@ public class CorsSecurity extends WebSecurityConfigurerAdapter {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200","https://anp-project-frontend.herokuapp.com"));
     configuration.setAllowedMethods(Arrays.asList(CorsConfiguration.ALL));
     configuration.setAllowedHeaders(Arrays.asList(CorsConfiguration.ALL));
     configuration.addExposedHeader(SecurityConstants.HEADER_STRING);
