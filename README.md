@@ -45,7 +45,7 @@ Siga os passos abaixo:
  1. acesse o link de download dos arquivos disponibilizados pela ANP através do link: 
  2. [http://www.anp.gov.br/conteudo-do-menu-superior/31-dados-abertos/conteudo-do-menu-superior/31-dados-abertos/5542-serie-historica-de-precos-de-combustiveis](http://www.anp.gov.br/conteudo-do-menu-superior/31-dados-abertos/conteudo-do-menu-superior/31-dados-abertos/5542-serie-historica-de-precos-de-combustiveis)
  3. Realize o download dos arquivos que vc quer importar para o seu banco de dados da seção **Combustíveis automotivos**;
- 4. Acesse o endpoint da API: /fuelPriceHistory/import;
+ 4. Acesse o endpoint da API: /fuelsPricesHistory/import;
  5. Importe o arquivo que você realizou o download;
  6. Insira o token de autorização  da API;
  7. Realize a request; :)
