@@ -42,7 +42,7 @@ public class GenericController<M extends GenericModel<Long>, R extends PagingAnd
     @ApiOperation(value = "View a list")
     @GetMapping
     public Page<M> findAll(Pageable pageable) {
-        return this.service.getRepository().findAll(pageable);
+        return this.service.findAll(pageable);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
