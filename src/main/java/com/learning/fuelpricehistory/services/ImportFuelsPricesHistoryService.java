@@ -40,7 +40,7 @@ public class ImportFuelsPricesHistoryService {
 	 */
 	public List<FuelPriceHistory> readCsv(MultipartFile multipartFile) {
 		this.logger.info("Processing file...");
-		String delimiter = "\t";
+		String delimiter = ";";
 		List<FuelPriceHistory> collects = new ArrayList<>();
 		int invalidRecords = 0;
 		Instant start = Instant.now();
