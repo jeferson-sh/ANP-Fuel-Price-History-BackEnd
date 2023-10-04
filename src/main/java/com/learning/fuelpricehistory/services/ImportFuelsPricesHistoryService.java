@@ -44,14 +44,14 @@ public class ImportFuelsPricesHistoryService {
 		List<FuelPriceHistory> collects = new ArrayList<>();
 		int invalidRecords = 0;
 		Instant start = Instant.now();
-		String[] columns = new String[0];
+		String[] columns;
 		try {
 			// Reader reader = new
 			// InputStreamReader(multipartFile.getInputStream(),Charset.forName("Cp1252"));
 			Reader reader = new InputStreamReader(multipartFile.getInputStream(),
 					UniversalDetector.detectCharset(multipartFile.getInputStream()));
 			BufferedReader bufferedReader = new BufferedReader(reader);
-			String readLine = "";
+			String readLine;
 			// skip headers
 			bufferedReader.readLine();
 			while ((readLine = bufferedReader.readLine()) != null) {
